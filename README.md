@@ -1,2 +1,3 @@
 # fastify-postgresjs
-Fasstify plugin for Postgres.js
+
+Fasstify plugin for Postgres.js.

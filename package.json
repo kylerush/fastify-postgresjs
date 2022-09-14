@@ -1,0 +1,20 @@
+{
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "prettier --check . && eslint . && tsc -p tsconfig.json",
+    "build:nots": "prettier --check . && tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "fastify": "^4.5.3",
+    "fastify-plugin": "^4.2.1",
+    "postgres": "^3.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
+    "eslint": "^8.23.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.3"
+  }
+}
