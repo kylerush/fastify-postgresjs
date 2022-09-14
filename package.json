@@ -1,0 +1,48 @@
+{
+  "name": "fastify-postgres-dot-js",
+  "version": "0.1.0",
+  "description": "A Fastify plugin for Postgres.js.",
+  "keywords": [
+    "fastify",
+    "postgres",
+    "postgresjs",
+    "plugin"
+  ],
+  "homepage": "https://github.com/kylerush/fastify-postgresjs",
+  "bugs": "https://github.com/kylerush/fastify-postgresjs/issues",
+  "license": "Unlicense",
+  "author": "Kyle Rush",
+  "types": "build/index.d.ts",
+  "type": "module",
+  "main": "build/index.js",
+  "scripts": {
+    "postgres": "docker run -p 5432:5432 --name fastify-postgresjs -e POSTGRES_PASSWORD=postgres -d postgres:11-alpine",
+    "postgres:migrate:up": "docker exec -it fastify-postgresjs psql -c 'CREATE TABLE users(\"pk\" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY, username VARCHAR (50) NOT NULL);' -U postgres -d postgres",
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint": "eslint .",
+    "test:watch": "vitest --coverage",
+    "test": "vitest run --coverage",
+    "typescript": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.build.json --noEmit",
+    "build": "npm run format && npm run lint && npm run typescript && npm run test && tsc -p tsconfig.build.json",
+    "pre-commit": "npm run format && npm run lint && npm run typescript && npm run test"
+  },
+  "dependencies": {
+    "fastify": "^4.11.0",
+    "fastify-plugin": "^4.5.0",
+    "postgres": "^3.3.3"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@tsconfig/node18-strictest-esm": "^1.0.1",
+    "@types/node": "^18.7.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "@vitest/coverage-c8": "^0.27.1",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.23.1",
+    "prettier": "^2.8.2",
+    "typescript": "^4.8.3",
+    "vitest": "^0.27.1"
+  }
+}
