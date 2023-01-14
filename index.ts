@@ -13,11 +13,9 @@ export type FastifyPostgresJsOptions<
   T extends Record<string, postgres.PostgresType<any>> = {}
 > = postgres.Options<T>;
 
-const fastifyPostgresJs: FastifyPluginCallback<FastifyPostgresJsOptions> = (
-  fastify,
-  options,
-  done
-) => {
+const fastifyPostgresJsPlugin: FastifyPluginCallback<
+  FastifyPostgresJsOptions
+> = (fastify, options, done) => {
   const sql = postgres(options);
   fastify.decorate("sql", sql);
   fastify.addHook("onClose", async () => {
@@ -26,5 +24,5 @@ const fastifyPostgresJs: FastifyPluginCallback<FastifyPostgresJsOptions> = (
   done();
 };
 
-export default fp(fastifyPostgresJs);
-export { fastifyPostgresJs };
+export default fp(fastifyPostgresJsPlugin);
+export const fastifyPostgresJs = fp(fastifyPostgresJsPlugin);
