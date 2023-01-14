@@ -1,0 +1,47 @@
+name: Format, Lint, Build, Test
+on: [push]
+
+env:
+  PGUSER: postgres
+  PGHOST: postgres
+  PGPASSWORD: postgres
+  PGDATABASE: postgres
+  PGPORT: 5432
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container: node:19.4-alpine3.17
+
+    services:
+      postgres:
+        image: postgres:11-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup database
+        run: node test/db-setup.js
+
+      - name: Format
+        run: npm run format
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typescript
+
+      - name: Test
+        run: npm run test

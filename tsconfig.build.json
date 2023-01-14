@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "build",
+    "noEmit": false
+  },
+  "include": ["index.ts"]
+}
