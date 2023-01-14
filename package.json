@@ -1,6 +1,6 @@
 {
   "name": "fastify-postgres-dot-js",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "A Fastify plugin for Postgres.js.",
   "keywords": [
     "fastify",
