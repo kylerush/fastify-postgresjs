@@ -18,7 +18,6 @@
   "scripts": {
     "postgres": "docker run -p 5432:5432 --name fastify-postgresjs -e POSTGRES_PASSWORD=postgres -d postgres:11-alpine",
     "migrate": "node test/db-setup.js",
-    "postgres:migrate:up": "docker exec -it fastify-postgresjs psql -c 'CREATE TABLE users(\"pk\" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY, username VARCHAR (50) NOT NULL);' -U postgres -d postgres",
     "format": "prettier --check .",
     "format:write": "prettier --write .",
     "lint": "eslint .",

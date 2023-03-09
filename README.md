@@ -112,12 +112,12 @@ try {
 
 First, start postgres with:
 
-```
-$ npm run postgres
+```sh
+npm run postgres
 ```
 
-Then run the database migration
+Then run the database migration:
 
-```
-npm run postgres:migrate:up
+```sh
+npm run migrate
 ```

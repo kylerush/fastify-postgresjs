@@ -32,7 +32,7 @@ jobs:
         run: npm ci
 
       - name: Setup database
-        run: node test/db-setup.js
+        run: npm run migrate
 
       - name: Format
         run: npm run format
